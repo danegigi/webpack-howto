@@ -42,7 +42,7 @@ However, webpack is more powerful than Browserify, so you generally want to make
 module.exports = {
   entry: './main.js',
   output: {
-    filename: 'bundle.js'       
+    filename: 'bundle.js'
   }
 };
 ```
@@ -69,7 +69,7 @@ See also the [babel-loader installation instructions](https://www.npmjs.com/pack
 module.exports = {
   entry: './main.js',
   output: {
-    filename: 'bundle.js'       
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -93,7 +93,7 @@ To enable requiring files without specifying the extension, you must add a `reso
 module.exports = {
   entry: './main.js',
   output: {
-    filename: 'bundle.js'       
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -109,7 +109,7 @@ module.exports = {
   },
   resolve: {
     // you can now require('file') instead of require('file.coffee')
-    extensions: ['', '.js', '.json', '.coffee'] 
+    extensions: ['', '.js', '.json', '.coffee']
   }
 };
 ```
@@ -178,7 +178,7 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = {
   entry: './main.js',
   output: {
-    filename: 'bundle.js'       
+    filename: 'bundle.js'
   },
   plugins: [definePlugin]
 };
@@ -218,6 +218,12 @@ var webpack = require('webpack');
 var commonsPlugin =
   new webpack.optimize.CommonsChunkPlugin('common.js');
 
+var jQ = new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery",
+    "window.jQuery": "jquery"
+})
+
 module.exports = {
   entry: {
     Profile: './profile.js',
@@ -227,7 +233,7 @@ module.exports = {
     path: 'build',
     filename: '[name].js' // Template based on keys in entry above
   },
-  plugins: [commonsPlugin]
+  plugins: [commonsPlugin, jQ]
 };
 ```
 
